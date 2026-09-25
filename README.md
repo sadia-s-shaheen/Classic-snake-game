@@ -1,334 +1,547 @@
-# 🐍 Classic Snake Game
+# Classic Snake Game 🐍
 
-> A classic Snake game implemented in **C** using a **Singly Linked List** and **raylib**.
-
-![Language](https://img.shields.io/badge/Language-C-blue)
-![Graphics](https://img.shields.io/badge/Graphics-raylib-green)
-![Data Structure](https://img.shields.io/badge/Data%20Structure-Linked%20List-orange)
-![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+A Data Structures-based Snake Game built in **C** using **raylib**, with the snake implemented using a **singly linked list**.
 
 ---
 
 ## 📌 Project Overview
 
-Classic Snake Game is a **Data Structures mini-project** that recreates the classic Snake game while demonstrating the practical use of a **Singly Linked List**.
+This project demonstrates the practical application of a **Linked List** through an interactive Snake game.
 
-Each segment of the snake is represented by a linked-list node. The project combines:
+Each segment of the snake is represented as a node:
 
-- C programming
-- Singly Linked Lists
-- Dynamic memory allocation
-- Game logic
-- Collision detection
-- Graphical programming with raylib
-- Git & GitHub collaboration
+```text
+Head
+ ↓
+[Node] → [Node] → [Node] → NULL
+```
+
+Each node stores:
+
+- `x` coordinate
+- `y` coordinate
+- Pointer to the next node
+
+The snake grows dynamically by adding new nodes to the linked list.
 
 ---
 
 ## 🎯 Problem Statement
 
-The snake's length changes continuously during gameplay. A data structure that can dynamically add and remove elements is therefore suitable for representing the snake.
+Traditional implementations of Snake often use fixed-size arrays to store the snake's body.
 
-**Problem:**  
-Design and implement an interactive Snake game in which the snake's body is managed dynamically using a **Linked List**, while providing a graphical interface and standard Snake mechanics.
+However, the snake's length changes continuously during gameplay. This project explores how a **singly linked list** can efficiently represent a dynamically growing snake.
 
 ---
 
 ## 💡 Proposed Solution
 
-The game will be implemented in **C using raylib**, with the snake represented as a **Singly Linked List**.
+We implement the snake using a dynamically allocated linked list.
 
-Each node represents one snake segment:
+During movement:
+
+1. A new node is created at the snake's head.
+2. The new node becomes the head.
+3. The tail node is removed.
+4. When food is eaten, the tail is not removed, causing the snake to grow.
+
+This demonstrates dynamic memory allocation and linked-list operations in a practical application.
+
+---
+
+## ✨ Features
+
+- 🎮 Interactive Snake game
+- 🐍 Snake implemented using a singly linked list
+- ⬆️⬇️⬅️➡️ Arrow-key movement
+- 🍎 Random food generation
+- 📈 Dynamic snake growth
+- 💯 Score system
+- ⚡ Speed increases as the snake grows
+- 💥 Wall collision detection
+- 💥 Self-collision detection
+- 🎬 Start screen
+- ☠️ Game-over screen
+- 🔄 Restart functionality
+- ❌ Safe window closing and memory cleanup
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| C | Programming language |
+| raylib | Graphics and game window |
+| GCC | C compiler |
+| Git | Version control |
+| GitHub | Collaboration |
+
+---
+
+## 📁 Project Structure
+
+```text
+Classic-snake-game/
+│
+├── src/
+│   ├── main.c
+│   ├── game.c
+│   ├── game.h
+│   ├── snake.c
+│   ├── snake.h
+│   ├── food.c
+│   ├── food.h
+│   └── config.h
+│
+├── assets/
+├── docs/
+├── README.md
+└── .gitignore
+```
+
+---
+
+## 🧠 Data Structure
+
+### Singly Linked List
+
+The snake is represented as:
 
 ```text
 HEAD
  ↓
-┌───────┐    ┌───────┐    ┌───────┐
-│ x, y  │ -> │ x, y  │ -> │ x, y  │ -> NULL
-└───────┘    └───────┘    └───────┘
+┌─────────────┐
+│ x │ y │ next├──────┐
+└─────────────┘      ↓
+                ┌─────────────┐
+                │ x │ y │ next├──────┐
+                └─────────────┘      ↓
+                                ┌─────────────┐
+                                │ x │ y │ NULL│
+                                └─────────────┘
 ```
 
-When food is eaten, a new node is added to the snake. During normal movement, the tail is removed while a new head position is created.
+### Why Linked List?
 
-This demonstrates:
-
-- Nodes
-- Pointers
-- Dynamic memory allocation
-- Linked-list traversal
-- Insertion
-- Deletion
+The snake's size changes during the game, so a linked list allows nodes to be dynamically added and removed.
 
 ---
 
-## 🎮 Game Features
+## 👥 Team Members & Responsibilities
 
-### Core Features
-
-- **Snake Movement** — `WASD` / Arrow Keys
-- **Food** — Random valid food generation
-- **Snake Growth** — New linked-list node when food is eaten
-- **Score** — Increases when food is consumed
-- **Wall Collision** — Game ends when the snake hits the boundary
-- **Self Collision** — Game ends when the snake hits its own body
-- **Start Screen** — Instructions and game start
-- **Game Over** — Final score and restart/exit options
-- **Restart** — Resets the snake, score, food and game state
+| Member | Responsibilities |
+|---|---|
+| Member 1 | Project setup, snake linked list, food rendering, self-collision, game-over, integration |
+| Member 2 | Documentation, movement, food generation, score, start screen |
+| Member 3 | Game board, snake growth, wall collision, food collision, restart, UI/UX and testing |
 
 ---
 
-## 🧠 Data Structure Used
+# 🚀 Setup Guide for Team Members
 
-### Singly Linked List
+This section explains how every team member can set up the project and start contributing.
 
-The primary data structure is a **Singly Linked List**.
+## 1. Install Git
 
-Each snake segment is represented by a node:
+Download and install Git:
 
-```c
-struct Node {
-    int x;
-    int y;
-    struct Node *next;
-};
-```
+https://git-scm.com/downloads
 
-Example:
+Verify installation:
 
-```text
-Before eating:
-
-HEAD → [1] → [2] → [3] → NULL
-
-After eating:
-
-HEAD → [1] → [2] → [3] → [4] → NULL
+```powershell
+git --version
 ```
 
 ---
 
-# 🚀 Team Setup & 2-Day Development Plan
+## 2. Clone the Repository
 
-The project is being developed collaboratively by **3 team members** using GitHub Issues, branches, Pull Requests and AI-assisted development.
+Open PowerShell or Git Bash and navigate to the folder where you want the project.
 
-### Target
+Then run:
 
-> Complete a fully playable and presentation-ready version within **2 days**.
-
----
-
-## 👥 Team Assignments
-
-| Member | Branch | Assigned Issues |
-|---|---|---|
-| Member 1 | `member-1` | #1, #2, #3, #4, #5, #6 |
-| Member 2 | `member-2` | #7, #8, #9, #10, #11, #12 |
-| Member 3 | `member-3` | #13, #14, #15, #16, #17, #18 |
-
-> Replace the member names/usernames if needed.
-
-**Important:** Every member should understand the overall project, not just their assigned issues.
-
----
-
-# 💻 Initial Setup — Every Member
-
-### 1. Clone the repository
-
-```bash
+```powershell
 git clone https://github.com/sadia-s-shaheen/Classic-snake-game.git
+```
+
+Enter the project directory:
+
+```powershell
 cd Classic-snake-game
 ```
 
-### 2. Install raylib
+---
 
-Install raylib for your operating system and verify that a basic raylib program can compile and run.
+## 3. Create Your Own Branch
 
-### 3. Switch to your assigned branch
+**Do not work directly on `main`.**
 
-```bash
-git checkout member-1
-```
+First make sure you have the latest version:
 
-Replace `member-1` with your assigned branch.
-
-### 4. Before starting new work
-
-```bash
+```powershell
 git checkout main
 git pull origin main
-git checkout member-X
+```
+
+Create your own branch:
+
+```powershell
+git checkout -b your-name
+```
+
+For example:
+
+```powershell
+git checkout -b ali
+```
+
+Verify your branch:
+
+```powershell
+git branch
+```
+
+You should see:
+
+```text
+  main
+* ali
+```
+
+The `*` indicates your current branch.
+
+---
+
+## 4. Install raylib
+
+The project uses **raylib** for graphics and window management.
+
+Download raylib from:
+
+https://www.raylib.com/
+
+On Windows, use a raylib Windows development package.
+
+For the current project setup, the raylib files are expected at:
+
+```text
+C:\raylib\raylib\src
+```
+
+You should have:
+
+```text
+C:\raylib\raylib\src\raylib.h
+C:\raylib\raylib\src\libraylib.a
+```
+
+---
+
+## 5. Install GCC
+
+You need a C compiler.
+
+The project currently uses **GCC through MSYS2/UCRT64**.
+
+Verify GCC:
+
+```powershell
+gcc --version
+```
+
+If GCC is installed correctly, this will display its version information.
+
+---
+
+## 6. Compile the Game
+
+From the project root:
+
+```powershell
+gcc src/main.c src/game.c src/snake.c src/food.c -o snake.exe -IC:\raylib\raylib\src -LC:\raylib\raylib\src -lraylib -lopengl32 -lgdi32 -lwinmm
+```
+
+If compilation succeeds, `snake.exe` will be created.
+
+> `snake.exe` is ignored by Git and should **not** be committed.
+
+---
+
+## 7. Run the Game
+
+Run:
+
+```powershell
+.\snake.exe
+```
+
+You should see the Snake start screen.
+
+### Controls
+
+| Key | Action |
+|---|---|
+| `ENTER` | Start game |
+| `↑` | Move up |
+| `↓` | Move down |
+| `←` | Move left |
+| `→` | Move right |
+| `R` | Restart after game over |
+| `ESC` | Quit |
+
+---
+
+# 🌿 Git Workflow for Team Members
+
+Always work on your own branch.
+
+```text
+main
+ │
+ ├── sadia
+ ├── member-2
+ └── member-3
+```
+
+## Before starting work
+
+Update your local `main`:
+
+```powershell
+git checkout main
+git pull origin main
+```
+
+Then return to your branch:
+
+```powershell
+git checkout your-name
+```
+
+Merge the latest `main` into your branch:
+
+```powershell
 git merge main
 ```
 
 ---
 
-# 🌱 Git Workflow
+## 💾 Save Your Work
 
-For each completed task:
+Check what changed:
 
-```text
-Work on assigned branch
-        ↓
-Test your changes
-        ↓
-Commit
-        ↓
-Push branch
-        ↓
-Create Pull Request
-        ↓
-Code Review
-        ↓
-Merge into main
+```powershell
+git status
 ```
 
-### Commit format
+Add your changes:
 
-Use clear commits such as:
-
-```bash
+```powershell
 git add .
-git commit -m "Complete issue #2: implement snake node structure"
-git push origin member-1
 ```
 
-### Rules
+Commit:
 
-- ❌ Do not commit directly to `main`
-- ✅ Work on your assigned branch
-- ✅ Pull/merge the latest `main` before starting new work
-- ✅ Test before pushing
-- ✅ Keep commits focused
-- ✅ Use Pull Requests for merging
+```powershell
+git commit -m "feat: describe your change"
+```
 
----
+For example:
 
-# 🐍 Development Roadmap
-
-## Phase 1 — Foundation
-
-| Member | Issues |
-|---|---|
-| **Member 1** | #1 Setup & raylib → #2 Snake Node Structure |
-| **Member 2** | #7 Documentation Structure → #8 Snake Movement |
-| **Member 3** | #13 Game Board → #14 Snake Growth |
-
-**Goal:** Window + board + linked-list snake + movement + growth.
+```powershell
+git commit -m "feat: add snake movement"
+```
 
 ---
 
-## Phase 2 — Core Mechanics
+## ☁️ Push Your Branch
 
-| Member | Issues |
-|---|---|
-| **Member 1** | #3 Food Rendering → #4 Self-Collision |
-| **Member 2** | #9 Food Generation → #10 Score System |
-| **Member 3** | #15 Wall Collision → #16 Food Collision |
+```powershell
+git push -u origin your-name
+```
 
-**Goal:** Fully playable basic Snake.
+For example:
 
----
-
-## Phase 3 — Game Flow & Polish
-
-| Member | Issues |
-|---|---|
-| **Member 1** | #5 Game Over Screen → #6 Integration Testing |
-| **Member 2** | #11 Start Screen → #12 Documentation & Screenshots |
-| **Member 3** | #17 Restart & Game State → #18 Final UI/UX & Bug Testing |
-
-**Goal:** Start → Play → Game Over → Restart.
+```powershell
+git push -u origin ali
+```
 
 ---
 
-## Phase 4 — Integration
+## 🔀 Create a Pull Request
 
-- Push completed branches
-- Create Pull Requests → `main`
-- Review changes
-- Resolve merge conflicts
-- Merge completed work
-- Run the complete game from `main`
+After pushing:
 
----
-
-## Phase 5 — Final Submission
-
-- [ ] All 18 issues closed
-- [ ] Game works from `main`
-- [ ] Linked List implementation verified
-- [ ] Screenshots added
-- [ ] README completed
-- [ ] Final bugs tested
-- [ ] PPT prepared
-- [ ] Demo prepared
+1. Open the GitHub repository.
+2. Select your recently pushed branch.
+3. Click **Compare & pull request**.
+4. Set the base branch to `main`.
+5. Set the compare branch to your branch.
+6. Describe your changes.
+7. Create the Pull Request.
+8. Ask the team to review it.
+9. Merge it into `main` after review.
 
 ---
 
-# 📅 2-Day Target
+# ⚠️ Important Git Rules
 
-### Day 1
-**Phase 1 + Phase 2**
+### ❌ Don't commit directly to `main`
 
-> Target: **Fully playable basic Snake**
+Always work on your own branch.
+
+### ❌ Don't commit generated files
+
+Do not commit:
 
 ```text
-MOVE → EAT FOOD → GROW → SCORE → COLLISION
+*.exe
+*.o
 ```
 
-### Day 2
-**Phase 3 + Phase 4 + Phase 5**
+### ✅ Pull before starting new work
 
-> Target: **Polished, tested and presentation-ready game**
+```powershell
+git checkout main
+git pull origin main
+```
+
+### ✅ Keep commits focused
+
+Good:
 
 ```text
-START → PLAY → GAME OVER → RESTART
+feat: add snake movement
+fix: resolve wall collision
+docs: update setup instructions
 ```
+
+Avoid:
+
+```text
+changes
+final
+final final
+updated
+stuff
+```
+
+---
+
+# 🔄 If You Get a Merge Conflict
+
+Check the current state:
+
+```powershell
+git status
+```
+
+Git will tell you which files have conflicts.
+
+Resolve the conflicting sections, then:
+
+```powershell
+git add .
+git commit
+```
+
+If you are unsure how to resolve a conflict, **stop before force-pushing anything and ask the team.**
+
+---
+
+# 🧪 Definition of Done
+
+- [ ] Raylib window works
+- [ ] Snake uses a linked list
+- [ ] Snake moves correctly
+- [ ] Food generates correctly
+- [ ] Snake grows after eating
+- [ ] Score works
+- [ ] Speed increases with snake length
+- [ ] Wall collision works
+- [ ] Self-collision works
+- [ ] Start screen works
+- [ ] Game-over screen works
+- [ ] Restart works
+- [ ] Memory is properly freed
+- [ ] Code compiles without warnings/errors
+- [ ] Final version is on `main`
+- [ ] Screenshots are added
+- [ ] Documentation is complete
+- [ ] Presentation is ready
 
 ---
 
 # 🤖 AI-Assisted Development
 
-AI tools may be used for:
+AI tools may be used during development for:
 
-- Code generation
 - Debugging
-- Explanations
-- Raylib API guidance
-- UI improvements
+- Understanding C concepts
+- Understanding raylib functions
+- Generating initial implementation ideas
+- Documentation assistance
 
-However, **do not blindly copy generated code**.
-
-Every member should be able to explain:
-
-- `struct`
-- Pointers
-- `malloc()` / `free()`
-- `NULL`
-- Linked-list traversal
-- Node insertion/deletion
-- Game loop
-- Keyboard input
-- Rendering
-- Collision detection
-- Game states
-
-Most importantly:
-
-> **Every team member should be able to explain how and why the Linked List is used to implement the Snake.**
+Every team member should **understand the code they submit** and be able to explain their contribution during the project demonstration.
 
 ---
 
-# 🏁 Definition of Done
+# 📅 Development Plan
 
-The project is complete when:
+### Phase 1 — Foundation
 
-1. All **18 issues** are closed.
-2. All member branches are integrated into `main`.
-3. The game builds and runs correctly.
-4. The Snake uses a **Singly Linked List**.
-5. Core gameplay features work.
-6. Screenshots and documentation are complete.
-7. The team can explain the implementation during the presentation.
-8. The final version is ready for demonstration.
+- Raylib setup
+- Linked-list snake
+- Game board
+- Initial snake rendering
+
+### Phase 2 — Core Mechanics
+
+- Movement
+- Food generation
+- Food rendering
+- Snake growth
+- Collision detection
+- Score
+
+### Phase 3 — Game Flow & Polish
+
+- Start screen
+- Game-over screen
+- Restart
+- UI/UX
+- Bug testing
+
+### Phase 4 — Integration
+
+- Merge branches
+- Resolve conflicts
+- Test complete game
+- Capture screenshots
+- Finalize documentation
+
+---
+
+# 👨‍💻 Final Goal
+
+The final project demonstrates how a **singly linked list can be applied to a real interactive system**.
+
+```text
+Linked List
+     ↓
+Snake Body
+     ↓
+Movement
+     ↓
+Food
+     ↓
+Dynamic Growth
+     ↓
+Collision Detection
+     ↓
+Score + Game State
+```
+
+**Built with C + raylib + Data Structures.** 🐍
